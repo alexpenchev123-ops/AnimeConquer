@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Conquer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="menu" class="screen active">
+            <h1 class="logo">ANIME <span>CONQUER</span></h1>
+            <div class="menu-buttons">
+                <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+<button class="glow-button" onclick="createOnlineGame()">CREATE ONLINE ROOM</button>
+<div class="join-area">
+    <input type="text" id="join-code" placeholder="ENTER CODE">
+    <button class="glow-button" onclick="joinOnlineGame()">JOIN ROOM</button>
+</div>
+                <button class="glow-button" onclick="showSetup()">LOCAL MULTIPLAYER</button>
+            </div>
+        </div>
+        <div id="setup" class="screen">
+            <h2>WAR ROOM</h2>
+            <div class="setup-box">
+                <label for="verse-select">SELECT UNIVERSE</label>
+                <select id="verse-select">
+                    <option value="JJK">Jujutsu Kaisen</option>
+                    <option value="Naruto">Naruto Shippuden</option>
+                    <option value="DemonSlayer">Demon Slayer</option>
+                     <option value="MHA">My Hero Academia</option>
+                </select>
+
+                <label for="player-count">PLAYER COUNT</label>
+                <select id="player-count" onchange="generateNameInputs()">
+                    <option value="2">2 Players</option>
+                    <option value="3">3 Players</option>
+                    <option value="4">4 Players</option>
+                </select>
+                <div id="name-inputs"></div>
+                <button class="start-button" onclick="initGame()">BEGIN CONQUEST</button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div id="turn-indicator"><span id="current-player-name">---</span>'S TURN</div>
+            </div>
+            <div class="main-layout">
+                <div id="board"></div>
+                <div class="ui-panel">
+                    <h3>HAND</h3>
+                    <div id="hand-display"></div>
+                    <button id="trade-btn" onclick="handleTrade()" disabled>TRADE 5 FOR LEGENDARY</button>
+                    <div id="ability-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="battle-modal" class="modal">
+        <div class="modal-content">
+            <div class="versus-container">
+                <div id="atk-card"></div>
+                <div class="vs-divider">VS</div>
+                <div id="def-card"></div>
+            </div>
+            <div id="special-modal-controls"></div>
+            <div class="modal-controls">
+                <button class="win-btn atk-btn" onclick="resolveManual(true)">ATTACKER WINS</button>
+                <button class="win-btn def-btn" onclick="resolveManual(false)">DEFENDER WINS</button>
+            </div>
+        </div>
+    </div><div id="win-screen" class="screen">
+        <div class="win-content">
+            <h1 id="winner-text">PLAYER 1 WINS!</h1>
+            <div class="win-buttons">
+                <button class="glow-button" onclick="restartGame()">PLAY AGAIN</button>
+                <button class="glow-button" onclick="backToMenu()">BACK TO MENU</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
